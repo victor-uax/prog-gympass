@@ -27,18 +27,21 @@ public class Gimnasio {
     }
 
     /**
-     * Este
+     * Introduce al Socio s en el array listaSocios
      * @param s
-     * @return
+     * @return true si ha podido ser registrado, false si no ha podido ser registrado
      */
     private boolean registrarSocio(Socio s){
         int posicionLibre;
+        boolean socioRegistrado = false;
 
         posicionLibre = devolverPosicionLibreSocios();
 
-        if(posicionLibre != -1){
+        if(posicionLibre != -1 && !comprobarDuplicidadSocio(s)){
             listaSocios[posicionLibre] = s;
+            socioRegistrado = true;
         }
+        return socioRegistrado;
     }
 
     /**
@@ -58,13 +61,23 @@ public class Gimnasio {
         }
         return posicionVacia;
     }
+
+    /**
+     * Comprueba que el código del Socio s no esté duplicado en el array listaSocios
+     * @param s
+     * @return true si está duplicado, false si no está duplicado
+     */
     private boolean comprobarDuplicidadSocio(Socio s){
         boolean seguirBuscando = true;
-        boolean socioDuplicado = false;
+        boolean socioDuplicado = true;
 
         for (int i = 0; i < CANT_SOCIOS && seguirBuscando; i++) {
-            if( listaSocios[i].getNumSocio()equals  == null){}
+            if( !(listaSocios[i].getNumSocio() == (s.getNumSocio()))){
+                seguirBuscando = false;
+                socioDuplicado = false;
+            }
         }
+        return socioDuplicado;
     }
 
 }
